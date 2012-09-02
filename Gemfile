@@ -22,6 +22,21 @@ end
 
 gem 'jquery-rails'
 
+group :test, :development do
+  gem "rspec-rails", "~> 2.0"
+end
+
+group :test do
+  gem 'shoulda-matchers'
+end
+
+group :development do
+  gem "guard"
+  gem "guard-rspec"
+  gem 'rb-fsevent', '~> 0.9.1'
+end
+
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
