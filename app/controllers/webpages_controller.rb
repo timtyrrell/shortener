@@ -17,5 +17,11 @@ class WebpagesController < ApplicationController
   end
 
   def show
+    webpage = Webpage.find_by_slug(params[:slug])
+    if webpage
+      redirect_to webpage.url
+    else
+      redirect_to new_webpage_path
+    end
   end
 end
