@@ -1,9 +1,9 @@
 Shortener::Application.routes.draw do
   root :to => 'webpages#new'
 
-  match ":slug" => "webpages#show"
-
   resources :webpages, :only => [:new, :create, :show]
+
+  match "/:slug" => "webpages#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
