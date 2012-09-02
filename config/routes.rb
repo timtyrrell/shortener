@@ -1,7 +1,5 @@
 Shortener::Application.routes.draw do
-  get "webpages/new"
-
-  get "webpages/show"
+  resources :webpages
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
