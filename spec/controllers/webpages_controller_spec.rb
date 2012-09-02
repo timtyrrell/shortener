@@ -8,14 +8,16 @@ describe WebpagesController do
       post 'create', :webpage => {:url => "www.google.com"}
     end
 
-    pending "returns the generated slug in a flash when successful" do
+    it "returns the generated slug in a flash when successful" do
+      Webpage.any_instance.stub(:save).and_return(true)
       post 'create', :webpage => {:url => "www.google.com"}
-      flash[:notice].should == "Redirect creation failed!"
+      flash[:notice].should start_with "Redirect created"
     end
 
-    pending "returns an error flash when unsuccessful" do
+    it "returns an error flash when unsuccessful" do
+      Webpage.any_instance.stub(:save).and_return(false)
       post 'create', :webpage => {:url => "www.google.com"}
-      flash[:error].should == "Redirect creation failed!"
+      flash[:alert].should == "Redirect creation failed!"
     end
   end
 
