@@ -5,10 +5,18 @@ describe WebpagesController do
   describe "POST 'create'" do
     it "creates a webpage" do
       Webpage.any_instance.should_receive(:save)
-      post 'create', :url => "www.google.com"
+      post 'create', :webpage => {:url => "www.google.com"}
     end
 
-    it "returns the generated slug in a flash"
+    pending "returns the generated slug in a flash when successful" do
+      post 'create', :webpage => {:url => "www.google.com"}
+      flash[:notice].should == "Redirect creation failed!"
+    end
+
+    pending "returns an error flash when unsuccessful" do
+      post 'create', :webpage => {:url => "www.google.com"}
+      flash[:error].should == "Redirect creation failed!"
+    end
   end
 
   describe "GET 'new'" do
