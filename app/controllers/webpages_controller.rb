@@ -21,7 +21,7 @@ class WebpagesController < ApplicationController
     if webpage
       redirect_to webpage.url
     else
-      redirect_to new_webpage_path
+      redirect_to new_webpage_path, :alert => "Redirect not found!"
     end
   end
 end

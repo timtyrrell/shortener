@@ -34,6 +34,12 @@ describe WebpagesController do
       get 'show', :slug => "bad"
       should redirect_to(new_webpage_path)
     end
+
+    it "should display warning if the slug is not found" do
+      Webpage.stub(:find_by_slug).and_return(nil)
+      get 'show', :slug => "bad"
+      flash[:alert].should == "Redirect not found!"
+    end
   end
 
   describe "GET 'new'" do
