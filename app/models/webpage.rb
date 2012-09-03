@@ -5,7 +5,8 @@ class Webpage < ActiveRecord::Base
 
   # callbacks are the devil, so this is not a before_save
   def generate_slug!
-    self.slug = "placeholder"
+    # encode to base 36. Not perfect, but decent for this example
+    self.slug = Time.now.utc.to_i.to_s(36)
   end
 
   def formatted_url
