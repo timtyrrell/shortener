@@ -19,7 +19,7 @@ class WebpagesController < ApplicationController
   def show
     webpage = Webpage.find_by_slug(params[:slug])
     if webpage
-      redirect_to webpage.url
+      redirect_to webpage.formatted_url
     else
       redirect_to new_webpage_path, :alert => "Redirect not found!"
     end

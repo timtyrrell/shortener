@@ -7,4 +7,14 @@ class Webpage < ActiveRecord::Base
   def generate_slug!
     self.slug = "placeholder"
   end
+
+  def formatted_url
+    return url if url.blank?
+
+    if url.match(/^http/)
+      url
+    else
+      "http://#{url}"
+    end
+  end
 end

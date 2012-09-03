@@ -23,7 +23,7 @@ describe WebpagesController do
 
   describe "GET 'show'" do
     it "should redirect to the url from a slug" do
-      webpage = Webpage.new(:url => "www.google.com", :slug => "placeholder")
+      webpage = Webpage.new(:url => "http://www.google.com", :slug => "placeholder")
       Webpage.stub(:find_by_slug).with(webpage.slug).and_return(webpage)
       get 'show', :slug => webpage.slug
       should redirect_to(webpage.url)
