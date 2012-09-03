@@ -8,7 +8,7 @@ class WebpagesController < ApplicationController
     webpage.generate_slug!
 
     if webpage.save
-      results = {:notice => "Redirect created: http://localhost/#{webpage.slug}"}
+      results = {:notice => "Redirect created: #{request.host_with_port}/#{webpage.slug}"}
     else
       results = {:alert => "Redirect creation failed!"}
     end
