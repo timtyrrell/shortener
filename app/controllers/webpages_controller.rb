@@ -5,7 +5,6 @@ class WebpagesController < ApplicationController
 
   def create
     webpage = Webpage.new(params[:webpage])
-    webpage.generate_slug!
 
     if webpage.save
       results = {:notice => "Redirect created: #{request.host_with_port}/#{webpage.slug}"}

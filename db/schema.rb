@@ -15,9 +15,11 @@ ActiveRecord::Schema.define(:version => 20120902165246) do
 
   create_table "webpages", :force => true do |t|
     t.string   "url",        :null => false
-    t.string   "slug",       :null => false
+    t.string   "slug"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "webpages", ["slug"], :name => "index_webpages_on_slug", :unique => true
 
 end

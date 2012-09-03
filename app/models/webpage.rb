@@ -1,12 +1,14 @@
 class Webpage < ActiveRecord::Base
   attr_accessible :slug, :url
 
-  validates :slug, :url, :presence => true
+  validates :url, :presence => true
+  validates :slug, :uniqueness => true, :unless => "slug.blank?"
 
-  # callbacks are the devil, so this is not a before_save
-  def generate_slug!
-    # encode to base 36. Not perfect, but decent for this example
-    self.slug = Time.now.utc.to_i.to_s(36)
+  after_create :generate_slug
+
+  def generate_slug
+    # encode to base 36
+    update_attributes(:slug => self.id.to_s(36))
   end
 
   def formatted_url
